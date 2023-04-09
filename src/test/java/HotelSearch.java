@@ -33,6 +33,10 @@ public class HotelSearch {
                 .findFirst()
                 .ifPresent(el -> el.click());
 
+        //ustawianie ilości ludzi
+        driver.findElement(By.id("travellersInput")).click();
+        driver.findElement(By.id("adultPlusBtn")).click();
+        driver.findElement(By.id("childPlusBtn")).click();
 
     }
 }

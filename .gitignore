@@ -1,2 +1,7 @@
 /target/
 /target/test-classes/
+/target/classes/
+/target/generated-sources/
+/target/generated-test-sources/
+/target/test-classes/
+/target/test-classes/HotelSearch.class

@@ -5,3 +5,4 @@
 /target/generated-test-sources/
 /target/test-classes/
 /target/test-classes/HotelSearchTest.class
+/.idea/uiDesigner.xml

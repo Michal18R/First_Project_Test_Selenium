@@ -5,20 +5,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class SignUpTest {
-    @Test
-    public void signUp(){
 
+    private  WebDriver driver;
+
+    @BeforeMethod
+    public void setup(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test
+    public void signUp(){
+
 
         //otwieranie zakładtki z tworzeniem konta
         driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
@@ -44,7 +58,7 @@ public class SignUpTest {
         Assert.assertFalse(heading.getText().contains(lastName));
         Assert.assertEquals(heading.getText(),"Hi, Karol Koks");
 
-        driver.quit();
+
 
     }
 }

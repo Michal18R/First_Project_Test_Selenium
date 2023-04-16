@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -12,17 +14,28 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class HotelSearch {
-    @Test
-    public void searchHotel() throws InterruptedException {
 
+    private  WebDriver driver;
+
+    @BeforeMethod
+    public void setup(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.get("http://www.kurs-selenium.pl/demo/");
-
-
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test
+    public void searchHotel() throws InterruptedException {
+
+
         driver.findElement(By.xpath("//span[text()='Search by Hotel or City Name']")).click();
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("Dubai");
         driver.findElement(By.xpath("//span[@class='select2-match' and text()='Dubai']")).click();
@@ -58,7 +71,7 @@ public class HotelSearch {
         Assert.assertEquals("Rose Rayhaan Rotana",hotelNames.get(2));
         Assert.assertEquals("Hyatt Regency Perth",hotelNames.get(3));
 
-        driver.quit();
+
 
     }
 }

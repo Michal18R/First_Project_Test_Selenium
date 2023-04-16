@@ -13,23 +13,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class SignUpFailTest {
-    private  WebDriver driver;
-
-    @BeforeMethod
-    public void setup(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.get("http://www.kurs-selenium.pl/demo/");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
-    }
+public class SignUpFailTest extends BaseTest{
 
     @Test
     public void signUpFailTest() {

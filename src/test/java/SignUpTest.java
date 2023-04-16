@@ -11,27 +11,11 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class SignUpTest {
+public class SignUpTest extends BaseTest{
 
-    private  WebDriver driver;
-
-    @BeforeMethod
-    public void setup(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.get("http://www.kurs-selenium.pl/demo/");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
-    }
 
     @Test
-    public void signUp(){
+    public void signUpTest(){
 
 
         //otwieranie zakładtki z tworzeniem konta

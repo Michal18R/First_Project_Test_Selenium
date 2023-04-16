@@ -58,6 +58,7 @@ public class HotelSearch {
         Assert.assertEquals("Rose Rayhaan Rotana",hotelNames.get(2));
         Assert.assertEquals("Hyatt Regency Perth",hotelNames.get(3));
 
+        driver.quit();
 
     }
 }

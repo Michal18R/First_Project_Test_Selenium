@@ -41,5 +41,6 @@ public class HotelFailSearch {
         Assert.assertTrue(heading.isDisplayed());
         Assert.assertEquals(heading.getText(),"No Results Found");
 
+        driver.quit();
     }
 }

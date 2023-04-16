@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -12,15 +14,26 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class SignUpFailTest {
+    private  WebDriver driver;
 
-    @Test
-    public void signUpFailTest() {
+    @BeforeMethod
+    public void setup(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test
+    public void signUpFailTest() {
+
 
         //otwieranie zakładtki z tworzeniem konta
         driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
@@ -37,16 +50,12 @@ public class SignUpFailTest {
         softAssert.assertTrue(Errors.contains("The First name field is required."));
         softAssert.assertTrue(Errors.contains("The Last Name field is required."));
         softAssert.assertAll();
+
         }
+
 
         @Test
         public void signUpFailTest2(){
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            WebDriver driver = new ChromeDriver(options);
-            driver.get("http://www.kurs-selenium.pl/demo/");
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
             //otwieranie zakładtki z tworzeniem konta
             driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);

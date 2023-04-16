@@ -44,7 +44,7 @@ public class SignUpTest {
         Assert.assertFalse(heading.getText().contains(lastName));
         Assert.assertEquals(heading.getText(),"Hi, Karol Koks");
 
-
+        driver.quit();
 
     }
 }

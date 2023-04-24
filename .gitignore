@@ -4,5 +4,5 @@
 /target/generated-sources/
 /target/generated-test-sources/
 /target/test-classes/
-/target/test-classes/HotelSearchTest.class
+/target/test-classes/pl.seleniumdemo.tests.HotelSearchTest.class
 /.idea/uiDesigner.xml

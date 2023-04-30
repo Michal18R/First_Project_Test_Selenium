@@ -35,7 +35,7 @@ public class HotelSearchPage {
     private WebElement childPlusBtn;
 
     @FindBy(xpath = "//button[text()=' Search']")
-    private WebElement searchButton;
+    public WebElement searchButton;
 
     public HotelSearchPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -52,10 +52,19 @@ public class HotelSearchPage {
         checkOutInput.sendKeys(checkOut);
     }
 
-    public void setTravelers(){
+    public void setTravelers(int adultsToAdd, int childToAdd){
         travelersInput.click();
-        adultPlusBtn.click();
-        childPlusBtn.click();
+
+        addTraveler(adultPlusBtn, adultsToAdd);
+        addTraveler(childPlusBtn, childToAdd);
+
+    }
+
+    //tworzenie metody do dodawania podróżujących
+    private  void addTraveler (WebElement travelerBtn, int numberofTravelers){
+        for (int i=0; i<numberofTravelers; i++){
+            travelerBtn.click();
+        }
     }
 
     public void performSearch(){

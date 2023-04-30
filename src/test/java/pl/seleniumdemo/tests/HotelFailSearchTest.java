@@ -1,9 +1,12 @@
 package pl.seleniumdemo.tests;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.seleniumdemo.pages.HotelSearchPage;
+import pl.seleniumdemo.pages.ResultsPage;
 import pl.seleniumdemo.tests.BaseTest;
 
 public class HotelFailSearchTest extends BaseTest {
@@ -12,27 +15,17 @@ public class HotelFailSearchTest extends BaseTest {
     @Test
     public void hotelFailSearchTest(){
 
-        driver.findElement(By.name("checkin")).sendKeys("17.04.2021");
-        driver.findElement(By.name("checkout")).click();
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
 
-        //wyszukiwanie elementu który jest widoczny na kalendarzu
-        driver.findElements(By.xpath("//td[@class='day ' and text()='30']"))
-                .stream()
-                .filter(WebElement::isDisplayed)
-                .findFirst()
-                .ifPresent(WebElement::click);
-
-        //ustawianie ilości ludzi
-        driver.findElement(By.id("travellersInput")).click();
-        driver.findElement(By.id("adultPlusBtn")).click();
-        driver.findElement(By.id("childPlusBtn")).click();
-
-        driver.findElement(By.xpath("//button[text()=' Search']")).click();
+        hotelSearchPage.setDates("27/04/2021", "29/04/2021");
+        hotelSearchPage.setTravelers(0,2);
+        hotelSearchPage.performSearch();
 
 
-        WebElement heading = driver.findElement(By.xpath("//h2[@class='text-center']"));
-        Assert.assertTrue(heading.isDisplayed());
-        Assert.assertEquals(heading.getText(),"No Results Found");
+        ResultsPage resultsPage = new ResultsPage(driver);
+
+        Assert.assertTrue(resultsPage.resultHeading.isDisplayed());
+        Assert.assertEquals(resultsPage.getHeadingText(),"No Results Found");
 
     }
 }

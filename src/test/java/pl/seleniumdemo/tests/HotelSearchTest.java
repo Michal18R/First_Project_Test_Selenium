@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
+import pl.seleniumdemo.pages.ResultsPage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +24,11 @@ public class HotelSearchTest extends BaseTest {
         hotelSearchPage.setTravelers();
         hotelSearchPage.performSearch();
 
-        //pobieranie nazw hoteli do listy
-        List<String> hotelNames = driver.findElements(By.xpath("//h4[contains(@class,'list_title')]//b"))
-                .stream().map(el -> el.getAttribute("textContent"))
-                .collect(Collectors.toList());
 
+        ResultsPage resultsPage = new ResultsPage(driver);
+
+        //pobieranie nazw hoteli do listy
+        List<String> hotelNames = resultsPage.getHotelNames();
 
         hotelNames.forEach(System.out::println);
 

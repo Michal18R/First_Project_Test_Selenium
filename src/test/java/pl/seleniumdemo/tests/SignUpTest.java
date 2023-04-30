@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.tests.BaseTest;
 
 public class SignUpTest extends BaseTest {
@@ -13,9 +14,8 @@ public class SignUpTest extends BaseTest {
     public void signUpTest(){
 
 
-        //otwieranie zakładtki z tworzeniem konta
-        driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
-        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
 
         int randomNumber = (int) (Math.random()*1000);
         String mail = "costam" + randomNumber + "@gmail.com";

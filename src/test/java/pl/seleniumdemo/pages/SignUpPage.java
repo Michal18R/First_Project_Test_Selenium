@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SignUpPage {
 
     //podstawa Page do działania
@@ -35,6 +38,9 @@ public class SignUpPage {
     @FindBy(xpath = "//button[text()=' Sign Up']")
     private WebElement signUpButton;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger']//p")
+    private List<WebElement> errors;
+
     public void setFirstName(String firstName){
         firstNameInput.sendKeys(firstName);
     }
@@ -55,6 +61,10 @@ public class SignUpPage {
         emailInput.sendKeys(mail);
     }
 
+    public void setFailEmail(String email){
+        emailInput.sendKeys(email);
+    }
+
     public void setPassword(String password){
         passwordInput.sendKeys(password);
     }
@@ -67,5 +77,10 @@ public class SignUpPage {
         signUpButton.click();
     }
 
+    public List<String> getErrors(){
+        return  errors.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
 
 }

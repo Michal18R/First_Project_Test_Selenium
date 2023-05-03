@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.seleniumdemo.model.User;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
@@ -56,6 +57,28 @@ public class SignUpTest extends BaseTest {
 
         Assert.assertTrue(loggedUserPage.getHeadingText().contains(lastName));
         Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Piotr Testowy");
+
+    }
+    @Test
+    public void signUpTest3(){
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        User user = new User();
+        user.setFirstName("Karol");
+        user.setLastName("Koks");
+        user.setPhone("121761242");
+        user.setPassword("kakaq121");
+
+        signUpPage.fillSignUpForm2(user);
+
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+
+        Assert.assertTrue(loggedUserPage.getHeadingText().contains(user.getLastName()));
+        Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Karol Koks");
 
     }
 }

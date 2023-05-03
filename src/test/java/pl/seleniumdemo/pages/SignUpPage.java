@@ -83,4 +83,15 @@ public class SignUpPage {
                 .collect(Collectors.toList());
     }
 
+    public void fillSignUpForm(String firstName, String lastName, String phone, String pasword){
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        phoneInput.sendKeys(phone);
+        setEmail();
+        passwordInput.sendKeys(pasword);
+        confirmPasswordInput.sendKeys(pasword);
+        signUpButton.click();
+
+    }
+
 }

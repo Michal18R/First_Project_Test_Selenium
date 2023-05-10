@@ -83,10 +83,10 @@ public class HotelSearchPage {
     }
 
     //metoda odpowiedzialna za znajdowanie i wejście do zakładki z rejestracją konta
-    public void openSignUpForm(){
+    public SignUpPage openSignUpForm(){
         myAccountLink.stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
         signUpLink.get(1).click();
-
+        return new SignUpPage(driver);
     }
 
 }

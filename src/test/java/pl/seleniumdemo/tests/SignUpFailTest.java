@@ -16,10 +16,9 @@ public class SignUpFailTest extends BaseTest {
     public void signUpFailTest() {
 
 
-        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-        hotelSearchPage.openSignUpForm();
+        SignUpPage signUpPage = new HotelSearchPage(driver)
+                .openSignUpForm();
 
-        SignUpPage signUpPage = new SignUpPage(driver);
         signUpPage.signUpButton();
 
 
@@ -40,17 +39,14 @@ public class SignUpFailTest extends BaseTest {
         public void signUpFailTest2(){
 
 
-            HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-            hotelSearchPage.openSignUpForm();
-
-            SignUpPage signUpPage = new SignUpPage(driver);
-
-            signUpPage.setFirstName("Michał");
-            signUpPage.setLastName("Test");
-            signUpPage.setPhone("884343566");
-            signUpPage.setFailEmail("koksy.pl");
-            signUpPage.setPassword("12121r1213wq");
-            signUpPage.setConfirmPassword("12121r1213wq");
+            SignUpPage signUpPage = new HotelSearchPage(driver)
+                    .openSignUpForm()
+                    .setFirstName("Michał")
+                    .setLastName("Test")
+                    .setPhone("884343566")
+                    .setFailEmail("koksy.pl")
+                    .setPassword("12121r1213wq")
+                    .setConfirmPassword("12121r1213wq");
             signUpPage.signUpButton();
 
             List<String> errors = signUpPage.getErrors();

@@ -14,7 +14,6 @@ public class ResultsPage {
     private List<WebElement> hotelList;
 
     @FindBy(xpath = "//div[@class='itemscontainer']//h2")
-    //"//h2[@class='text-center']"
     public WebElement resultHeading;
 
     public ResultsPage(WebDriver driver){

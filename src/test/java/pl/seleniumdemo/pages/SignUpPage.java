@@ -1,11 +1,11 @@
 package pl.seleniumdemo.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pl.seleniumdemo.model.User;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +14,9 @@ public class SignUpPage {
 
     //podstawa Page do działania
     public SignUpPage (WebDriver driver){
+
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
 
@@ -42,40 +44,50 @@ public class SignUpPage {
     @FindBy(xpath = "//div[@class='alert alert-danger']//p")
     private List<WebElement> errors;
 
-    public void setFirstName(String firstName){
+    public WebDriver driver;
+
+    public SignUpPage setFirstName(String firstName){
         firstNameInput.sendKeys(firstName);
+        return this;
     }
 
-    public void setLastName(String lastName){
+    public SignUpPage setLastName(String lastName){
         lastNameInput.sendKeys(lastName);
+        return this;
     }
 
-    public void setPhone(String phone){
+    public SignUpPage setPhone(String phone){
         phoneInput.sendKeys(phone);
+        return this;
     }
 
-    public void setEmail(){
+    public SignUpPage setEmail(){
 
         int randomNumber = (int) (Math.random()*1000);
         String mail = "costam" + randomNumber + "@gmail.com";
 
         emailInput.sendKeys(mail);
+        return this;
     }
 
-    public void setFailEmail(String email){
+    public SignUpPage setFailEmail(String email){
         emailInput.sendKeys(email);
+        return this;
     }
 
-    public void setPassword(String password){
+    public SignUpPage setPassword(String password){
         passwordInput.sendKeys(password);
+        return this;
     }
 
-    public void setConfirmPassword(String confirmPassword){
+    public SignUpPage setConfirmPassword(String confirmPassword){
         confirmPasswordInput.sendKeys(confirmPassword);
+        return this;
     }
 
-    public void signUpButton(){
+    public LoggedUserPage signUpButton(){
         signUpButton.click();
+        return new LoggedUserPage(driver);
     }
 
     public List<String> getErrors(){
@@ -84,25 +96,4 @@ public class SignUpPage {
                 .collect(Collectors.toList());
     }
 
-    public void fillSignUpForm(String firstName, String lastName, String phone, String pasword){
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
-        phoneInput.sendKeys(phone);
-        setEmail();
-        passwordInput.sendKeys(pasword);
-        confirmPasswordInput.sendKeys(pasword);
-        signUpButton.click();
-
-    }
-
-    public void fillSignUpForm2(User user){
-        firstNameInput.sendKeys(user.getFirstName());
-        lastNameInput.sendKeys(user.getLastName());
-        phoneInput.sendKeys(user.getPhone());
-        setEmail();
-        passwordInput.sendKeys(user.getPassword());
-        confirmPasswordInput.sendKeys(user.getPassword());
-        signUpButton.click();
-
-    }
 }

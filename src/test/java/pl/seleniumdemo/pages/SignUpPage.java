@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class SignUpPage {
 
     //podstawa Page do działania
-    public SignUpPage (WebDriver driver){
+    public SignUpPage(WebDriver driver) {
 
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -46,52 +46,52 @@ public class SignUpPage {
 
     public WebDriver driver;
 
-    public SignUpPage setFirstName(String firstName){
+    public SignUpPage setFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
         return this;
     }
 
-    public SignUpPage setLastName(String lastName){
+    public SignUpPage setLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
         return this;
     }
 
-    public SignUpPage setPhone(String phone){
+    public SignUpPage setPhone(String phone) {
         phoneInput.sendKeys(phone);
         return this;
     }
 
-    public SignUpPage setEmail(){
+    public SignUpPage setEmail() {
 
-        int randomNumber = (int) (Math.random()*1000);
+        int randomNumber = (int) (Math.random() * 1000);
         String mail = "costam" + randomNumber + "@gmail.com";
 
         emailInput.sendKeys(mail);
         return this;
     }
 
-    public SignUpPage setFailEmail(String email){
+    public SignUpPage setFailEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
-    public SignUpPage setPassword(String password){
+    public SignUpPage setPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
-    public SignUpPage setConfirmPassword(String confirmPassword){
+    public SignUpPage setConfirmPassword(String confirmPassword) {
         confirmPasswordInput.sendKeys(confirmPassword);
         return this;
     }
 
-    public LoggedUserPage signUpButton(){
+    public LoggedUserPage signUpButton() {
         signUpButton.click();
         return new LoggedUserPage(driver);
     }
 
-    public List<String> getErrors(){
-        return  errors.stream()
+    public List<String> getErrors() {
+        return errors.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }

@@ -8,14 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoggedUserPage {
 
-    public LoggedUserPage(WebDriver driver){
+    public LoggedUserPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//h3[@class='RTL']")
     private WebElement heading;
 
-    public String getHeadingText(){
+    public String getHeadingText() {
         return heading.getText();
     }
 

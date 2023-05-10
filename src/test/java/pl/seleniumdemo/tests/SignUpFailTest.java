@@ -32,30 +32,30 @@ public class SignUpFailTest extends BaseTest {
         softAssert.assertTrue(errors.contains("The Last Name field is required."));
         softAssert.assertAll();
 
-        }
+    }
 
 
-        @Test
-        public void signUpFailTest2(){
+    @Test
+    public void signUpFailTest2() {
 
 
-            SignUpPage signUpPage = new HotelSearchPage(driver)
-                    .openSignUpForm()
-                    .setFirstName("Michał")
-                    .setLastName("Test")
-                    .setPhone("884343566")
-                    .setFailEmail("koksy.pl")
-                    .setPassword("12121r1213wq")
-                    .setConfirmPassword("12121r1213wq");
-            signUpPage.signUpButton();
+        SignUpPage signUpPage = new HotelSearchPage(driver)
+                .openSignUpForm()
+                .setFirstName("Michał")
+                .setLastName("Test")
+                .setPhone("884343566")
+                .setFailEmail("koksy.pl")
+                .setPassword("12121r1213wq")
+                .setConfirmPassword("12121r1213wq");
+        signUpPage.signUpButton();
 
-            List<String> errors = signUpPage.getErrors();
+        List<String> errors = signUpPage.getErrors();
 
-            SoftAssert softAssert = new SoftAssert();
-            softAssert.assertTrue(errors.contains("The Email field must contain a valid email address."));
-            softAssert.assertAll();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(errors.contains("The Email field must contain a valid email address."));
+        softAssert.assertAll();
 
-        }
+    }
 
 
 }

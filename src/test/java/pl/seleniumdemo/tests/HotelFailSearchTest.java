@@ -11,16 +11,16 @@ public class HotelFailSearchTest extends BaseTest {
 
 
     @Test
-    public void hotelFailSearchTest(){
+    public void hotelFailSearchTest() {
 
         ResultsPage resultsPage = new HotelSearchPage(driver)
-                                          .setDates("27/04/2021", "29/04/2021")
-                                          .setTravelers(0,2)
-                                          .performSearch();
+                .setDates("27/04/2021", "29/04/2021")
+                .setTravelers(0, 2)
+                .performSearch();
 
 
         Assert.assertTrue(resultsPage.resultHeading.isDisplayed());
-        Assert.assertEquals(resultsPage.getHeadingText(),"No Results Found");
+        Assert.assertEquals(resultsPage.getHeadingText(), "No Results Found");
 
     }
 }

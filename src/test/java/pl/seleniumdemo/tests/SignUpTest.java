@@ -5,14 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
-import pl.seleniumdemo.pages.SignUpPage;
+
 
 
 public class SignUpTest extends BaseTest {
 
 
     @Test
-    public void signUpTest(){
+    public void signUpTest() {
 
         String lastName = "Testowy";
 
@@ -27,7 +27,7 @@ public class SignUpTest extends BaseTest {
                 .signUpButton();
 
         Assert.assertTrue(loggedUserPage.getHeadingText().contains(lastName));
-        Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Bartek Testowy");
+        Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Bartek Testowy");
 
     }
 }

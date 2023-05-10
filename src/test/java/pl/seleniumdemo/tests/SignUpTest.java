@@ -14,7 +14,7 @@ public class SignUpTest extends BaseTest {
 
 
     @Test
-    public void signUpTest(){
+    public void signUpTest() {
 
         String lastName = "Testowy";
 
@@ -35,13 +35,13 @@ public class SignUpTest extends BaseTest {
         LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
 
         Assert.assertTrue(loggedUserPage.getHeadingText().contains(lastName));
-        Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Bartek Testowy");
+        Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Bartek Testowy");
 
 
     }
 
     @Test
-    public void signUpTest2(){
+    public void signUpTest2() {
 
         String lastName = "Testowy";
 
@@ -56,11 +56,12 @@ public class SignUpTest extends BaseTest {
         LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
 
         Assert.assertTrue(loggedUserPage.getHeadingText().contains(lastName));
-        Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Piotr Testowy");
+        Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Piotr Testowy");
 
     }
+
     @Test
-    public void signUpTest3(){
+    public void signUpTest3() {
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
@@ -78,7 +79,7 @@ public class SignUpTest extends BaseTest {
         LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
 
         Assert.assertTrue(loggedUserPage.getHeadingText().contains(user.getLastName()));
-        Assert.assertEquals(loggedUserPage.getHeadingText(),"Hi, Karol Koks");
+        Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Karol Koks");
 
     }
 }

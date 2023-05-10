@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class SignUpPage {
 
     //podstawa Page do działania
-    public SignUpPage (WebDriver driver){
+    public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -42,49 +42,49 @@ public class SignUpPage {
     @FindBy(xpath = "//div[@class='alert alert-danger']//p")
     private List<WebElement> errors;
 
-    public void setFirstName(String firstName){
+    public void setFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
     }
 
-    public void setPhone(String phone){
+    public void setPhone(String phone) {
         phoneInput.sendKeys(phone);
     }
 
-    public void setEmail(){
+    public void setEmail() {
 
-        int randomNumber = (int) (Math.random()*1000);
+        int randomNumber = (int) (Math.random() * 1000);
         String mail = "costam" + randomNumber + "@gmail.com";
 
         emailInput.sendKeys(mail);
     }
 
-    public void setFailEmail(String email){
+    public void setFailEmail(String email) {
         emailInput.sendKeys(email);
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         passwordInput.sendKeys(password);
     }
 
-    public void setConfirmPassword(String confirmPassword){
+    public void setConfirmPassword(String confirmPassword) {
         confirmPasswordInput.sendKeys(confirmPassword);
     }
 
-    public void signUpButton(){
+    public void signUpButton() {
         signUpButton.click();
     }
 
-    public List<String> getErrors(){
-        return  errors.stream()
+    public List<String> getErrors() {
+        return errors.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
-    public void fillSignUpForm(String firstName, String lastName, String phone, String pasword){
+    public void fillSignUpForm(String firstName, String lastName, String phone, String pasword) {
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
         phoneInput.sendKeys(phone);
@@ -95,7 +95,7 @@ public class SignUpPage {
 
     }
 
-    public void fillSignUpForm2(User user){
+    public void fillSignUpForm2(User user) {
         firstNameInput.sendKeys(user.getFirstName());
         lastNameInput.sendKeys(user.getLastName());
         phoneInput.sendKeys(user.getPhone());

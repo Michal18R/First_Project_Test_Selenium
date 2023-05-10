@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HotelSearchPage {
     @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
-    private  WebElement searchHotelSpan;
+    private WebElement searchHotelSpan;
 
     @FindBy(xpath = "//div[@id='select2-drop']//input")
     private WebElement searchHotelInput;
@@ -41,13 +41,14 @@ public class HotelSearchPage {
     private List<WebElement> signUpLink;
 
     private WebDriver driver;
-    public HotelSearchPage(WebDriver driver){
 
-        PageFactory.initElements(driver,this);
+    public HotelSearchPage(WebDriver driver) {
+
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public HotelSearchPage setCity(String cityName){
+    public HotelSearchPage setCity(String cityName) {
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
@@ -55,13 +56,13 @@ public class HotelSearchPage {
         return this;
     }
 
-    public HotelSearchPage setDates(String checkIn, String checkOut){
+    public HotelSearchPage setDates(String checkIn, String checkOut) {
         checkInImput.sendKeys(checkIn);
         checkOutInput.sendKeys(checkOut);
         return this;
     }
 
-    public HotelSearchPage setTravelers(int adultsToAdd, int childToAdd){
+    public HotelSearchPage setTravelers(int adultsToAdd, int childToAdd) {
         travelersInput.click();
 
         addTraveler(adultPlusBtn, adultsToAdd);
@@ -71,19 +72,19 @@ public class HotelSearchPage {
     }
 
     //tworzenie metody do dodawania podróżujących
-    private  void addTraveler (WebElement travelerBtn, int numberofTravelers){
-        for (int i=0; i<numberofTravelers; i++){
+    private void addTraveler(WebElement travelerBtn, int numberofTravelers) {
+        for (int i = 0; i < numberofTravelers; i++) {
             travelerBtn.click();
         }
     }
 
-    public ResultsPage performSearch(){
+    public ResultsPage performSearch() {
         searchButton.click();
         return new ResultsPage(driver);
     }
 
     //metoda odpowiedzialna za znajdowanie i wejście do zakładki z rejestracją konta
-    public void openSignUpForm(){
+    public void openSignUpForm() {
         myAccountLink.stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
         signUpLink.get(1).click();
 

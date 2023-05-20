@@ -49,24 +49,31 @@ public class HotelSearchPage {
     }
 
     public HotelSearchPage setCity(String cityName) {
+        System.out.println("Setting City - " + cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         driver.findElement(By.xpath(xpath)).click();
+        System.out.println("! Setting City DONE !" );
         return this;
+
     }
 
     public HotelSearchPage setDates(String checkIn, String checkOut) {
+        System.out.println("Setting Dates checkIn: " + checkIn + " and checkOut: " + checkOut);
         checkInImput.sendKeys(checkIn);
         checkOutInput.sendKeys(checkOut);
+        System.out.println("! Setting Dates DONE !");
         return this;
     }
 
     public HotelSearchPage setTravelers(int adultsToAdd, int childToAdd) {
+        System.out.println("Adding Adults: " + adultsToAdd + " and Kids: " + childToAdd);
         travelersInput.click();
 
         addTraveler(adultPlusBtn, adultsToAdd);
         addTraveler(childPlusBtn, childToAdd);
+        System.out.println("! Adding DONE !");
         return this;
 
     }
@@ -79,8 +86,11 @@ public class HotelSearchPage {
     }
 
     public ResultsPage performSearch() {
+        System.out.println("Performing search");
         searchButton.click();
+        System.out.println("! Performing search DONE !");
         return new ResultsPage(driver);
+
     }
 
     //metoda odpowiedzialna za znajdowanie i wejście do zakładki z rejestracją konta

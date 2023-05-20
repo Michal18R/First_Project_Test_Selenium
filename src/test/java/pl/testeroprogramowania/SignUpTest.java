@@ -1,4 +1,4 @@
-package pl.seleniumdemo.tests;
+package pl.testeroprogramowania;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +8,7 @@ import pl.seleniumdemo.model.User;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
+import pl.seleniumdemo.tests.BaseTest;
 
 
 public class SignUpTest extends BaseTest {

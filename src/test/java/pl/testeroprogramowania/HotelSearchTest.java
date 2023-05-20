@@ -1,10 +1,11 @@
-package pl.seleniumdemo.tests;
+package pl.testeroprogramowania;
 
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.ResultsPage;
+import pl.seleniumdemo.tests.BaseTest;
 
 import java.util.List;
 

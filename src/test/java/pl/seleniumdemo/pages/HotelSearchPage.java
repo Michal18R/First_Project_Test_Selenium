@@ -1,5 +1,7 @@
 package pl.seleniumdemo.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,6 +44,8 @@ public class HotelSearchPage {
 
     private WebDriver driver;
 
+    private static final Logger Logger = LogManager.getLogger();
+
     public HotelSearchPage(WebDriver driver) {
 
         PageFactory.initElements(driver, this);
@@ -49,31 +53,38 @@ public class HotelSearchPage {
     }
 
     public HotelSearchPage setCity(String cityName) {
-        System.out.println("Setting City - " + cityName);
+        Logger.info("Setting City - " + cityName);
+        //System.out.println("Setting City - " + cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         driver.findElement(By.xpath(xpath)).click();
-        System.out.println("! Setting City DONE !" );
+        Logger.info("! Setting City DONE !");
+        //System.out.println("! Setting City DONE !" );
         return this;
 
     }
 
     public HotelSearchPage setDates(String checkIn, String checkOut) {
-        System.out.println("Setting Dates checkIn: " + checkIn + " and checkOut: " + checkOut);
+        Logger.info("Setting Dates checkIn: " + checkIn + " and checkOut: " + checkOut);
+        //System.out.println("Setting Dates checkIn: " + checkIn + " and checkOut: " + checkOut);
         checkInImput.sendKeys(checkIn);
         checkOutInput.sendKeys(checkOut);
-        System.out.println("! Setting Dates DONE !");
+        Logger.info("! Setting Dates DONE !");
+        //System.out.println("! Setting Dates DONE !");
         return this;
     }
 
     public HotelSearchPage setTravelers(int adultsToAdd, int childToAdd) {
-        System.out.println("Adding Adults: " + adultsToAdd + " and Kids: " + childToAdd);
+        Logger.info("Adding Adults: " + adultsToAdd + " and Kids: " + childToAdd);
+        //System.out.println("Adding Adults: " + adultsToAdd + " and Kids: " + childToAdd);
         travelersInput.click();
 
         addTraveler(adultPlusBtn, adultsToAdd);
         addTraveler(childPlusBtn, childToAdd);
-        System.out.println("! Adding DONE !");
+
+        Logger.info("! Adding DONE !");
+        //System.out.println("! Adding DONE !");
         return this;
 
     }
@@ -86,9 +97,11 @@ public class HotelSearchPage {
     }
 
     public ResultsPage performSearch() {
-        System.out.println("Performing search");
+        Logger.info("Performing search");
+        //System.out.println("Performing search");
         searchButton.click();
-        System.out.println("! Performing search DONE !");
+        Logger.info("! Performing search DONE !");
+        //System.out.println("! Performing search DONE !");
         return new ResultsPage(driver);
 
     }
